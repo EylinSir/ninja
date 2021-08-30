@@ -82,12 +82,53 @@ Ninja 仅支持 qinglong 2.9+
 2. 进容器内执行以下命令
 
    **进容器内执行以下命令**
+   
+   拉库
 
    ```bash
    git clone https://github.com/EylinX/ninja.git /ql/ninja
-   cd /ql/ninja/backend
-   pnpm install
+   ```
+   安装依赖
+   ```bash
+   cd /ql/ninja/backend && pnpm install
+   ```
+   创建配置文件
+   ```bash
+   cp .env.example .env
+   ```
+   编辑配置文件
+   ```bash
+   vi .env
+   ```
+   配置文件解析：
+   ```bash
+   # 是否允许添加账号 不允许添加时则只允许已有账号登录
+   ALLOW_ADD=true
+
+   #允许添加账号的最大数量
+   ALLOW_NUM=99
+
+   # Ninja 运行端口
+   NINJA_PORT=5701
+
+   # Ninja 是否发送通知
+   NINJA_NOTIFY=true
+
+   # 自定义user-agent设置
+   # NINJA_UA=""
+
+   # 青龙接口参数配置
+   QL_URL="http://localhost:5700"
+   QL_Client_ID=
+   QL_Client_Secret=
+   
+   ```
+   运行Ninja
+   ```bash
    pm2 start
+   ```
+   拷贝通知依赖到青龙
+   ```bash
    cp sendNotify.js /ql/scripts/sendNotify.js
    ```
 
